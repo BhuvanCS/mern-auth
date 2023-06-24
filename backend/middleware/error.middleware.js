@@ -1,4 +1,3 @@
-import { StarTwoTone } from "@mui/icons-material";
 
 const notFound = (req, res, next) => {
     const error = new Error(`Not Found: ${req.originalUrl}`);
