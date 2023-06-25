@@ -34,7 +34,6 @@ const regUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error('Invalid username');
     }
-    res.status(200).json({message: "Register User"});
 });
 
 // @desc Logout user
