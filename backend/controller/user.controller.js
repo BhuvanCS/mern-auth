@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler';
 //Async handler to custom handle the error
 import User from '../models/user.model.js';
-import generateToken from '../utils/generateToken.js';
+import {generateToken, destroyToken} from '../utils/tokenFunctions.js';
 
 // @desc Auth User/Set Token
 // route POST /api/users/auth
@@ -9,8 +9,6 @@ import generateToken from '../utils/generateToken.js';
 const authUser = asyncHandler(async (req, res) => {
     const {email, password} = req.body;
     const user = await User.findOne({email: email});
-    console.log(user);
-    console.log(await user.matchPassword(password));
     if(user && (await user.matchPassword(password))){
         generateToken(res, user._id)
         res.status(201).json({
@@ -58,7 +56,10 @@ const regUser = asyncHandler(async (req, res) => {
 // route POST /api/users/logout
 // @access Public
 const logoutUser = asyncHandler(async (req, res) => {
-    res.status(200).json({message: "Logout User"});
+    //destroy the cookie
+    destroyToken(res);
+    
+    res.status(200).json({message: "User Logged out successfully"});
 });
 
 // @desc Get user profile

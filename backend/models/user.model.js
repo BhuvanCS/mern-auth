@@ -19,6 +19,7 @@ const userSchema = mongoose.Schema({
     timestamps: true
 })
 
+//perform a task before saving
 userSchema.pre('save', async function(next){
     if(!this.isModified('password')){
         next();

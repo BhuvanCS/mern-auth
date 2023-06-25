@@ -17,4 +17,11 @@ const generateToken = (res, userId) => {
 
 }
 
-export default generateToken;
+const destroyToken = (res) => {
+    res.cookie('jwt','',{
+        httpOnly: true,
+        expires: new Date(0)
+    })
+}
+
+export {generateToken, destroyToken};
