@@ -1,6 +1,8 @@
 import asyncHandler from 'express-async-handler';
 //Async handler to custom handle the error
 import User from '../models/user.model.js';
+import generateToken from '../utils/generateToken.js';
+
 // @desc Auth User/Set Token
 // route POST /api/users/auth
 // @access Public
@@ -24,6 +26,7 @@ const regUser = asyncHandler(async (req, res) => {
         password
     })
     if(user){
+        generateToken(res, user._id)
         res.status(201).json({
             _id: user._id,
             name: user.name,
