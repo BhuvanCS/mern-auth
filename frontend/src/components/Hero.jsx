@@ -10,7 +10,7 @@ const Hero = () => {
     <Container >
     <Card className="text-center my-5">
         <Card.Body>
-        <Card.Title>MERN Authentication</Card.Title>
+        <h2 className = "m-3">MERN Authentication</h2>
         <Card.Text>
           This project mainly focuses on MERN Authentication. It creates an HTTP only cookie. It uses React Bootstrap and Redux Toolkit.
         </Card.Text>
